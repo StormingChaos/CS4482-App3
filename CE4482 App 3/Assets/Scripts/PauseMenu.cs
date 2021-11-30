@@ -44,21 +44,21 @@ public class PauseMenu : MonoBehaviour
     public void RestartGame()
     {
         Resume();
-        VictoryManager.victory = false;
+        GameStateManager.victory = false;
         SceneManager.LoadScene("Level1");
     }
 
     public void Leaderboard()
     {
         Resume();
-        VictoryManager.victory = false;
+        GameStateManager.victory = false;
         SceneManager.LoadScene("Leaderboard");
     }
 
     public void MainMenu()
     {
         Resume();
-        VictoryManager.victory = false;
+        GameStateManager.victory = false;
         SceneManager.LoadScene("MainMenu");
     }
 

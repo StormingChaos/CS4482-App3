@@ -9,7 +9,6 @@ public class CameraFollow : MonoBehaviour
 
     Vector3 offset;                     // The initial offset from the target.
 
-
     private void Start()
     {
         // Calculate the initial offset.
