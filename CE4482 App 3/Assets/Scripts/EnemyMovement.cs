@@ -6,13 +6,14 @@ using UnityEngine.AI;
 public class EnemyMovement : MonoBehaviour
 {
     public Transform[] points;          // array of patrol points
-    public float walkSpeed = 1.5f;      // how fast the enemy will patrol between points
+    public float walkSpeed = 0.5f;      // how fast the enemy will patrol between points
     public float chaseSpeed = 2.5f;     // how fast the agent will chase the player
     public float turnSpeed = 1000;      // how fast the agent can turn
     private int destPoint = 0;          // currently selected destination point
     private NavMeshAgent agent;         // reference to Nav mesh agent
     private Transform player;           // reference to player position
     private bool chase;                 // if this enemy is chasing the player or not
+    private Animator anim;              // reference to animator
 
     // Start is called before the first frame update
     private void Start()
@@ -20,6 +21,7 @@ public class EnemyMovement : MonoBehaviour
         //set up reference to navmeshagent
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        anim = GetComponent<Animator>();
         // for continuous movement between points
         agent.autoBraking = false;
         chase = false;
@@ -39,6 +41,9 @@ public class EnemyMovement : MonoBehaviour
         // set agent to go to currently selected point
         agent.destination = points[destPoint].position;
 
+        //set agent to animate
+        anim.SetBool("IsWalking", true);
+
         // set next point in array as destination
         destPoint = (destPoint + 1) % points.Length;
     }
@@ -55,6 +60,7 @@ public class EnemyMovement : MonoBehaviour
         {
             chase = true;
             agent.speed = chaseSpeed;
+            anim.SetBool("IsRunning", chase);
         }
         // else choose next destination point when agent gets close to the current one
         else if (!chase && !agent.pathPending && agent.remainingDistance < 0.5f)
