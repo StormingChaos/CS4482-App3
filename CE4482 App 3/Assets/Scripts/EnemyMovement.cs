@@ -14,14 +14,18 @@ public class EnemyMovement : MonoBehaviour
     private Transform player;           // reference to player position
     private bool chase;                 // if this enemy is chasing the player or not
     private Animator anim;              // reference to animator
+    private EnemyHealth enemyHealth;    // reference to enemyHealth Script
+    private PlayerHealth playerHealth;  // reference to player health script
 
     // Start is called before the first frame update
     private void Start()
     {
-        //set up reference to navmeshagent
+        //set up references
         agent = GetComponent<NavMeshAgent>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         anim = GetComponent<Animator>();
+        enemyHealth = GetComponent<EnemyHealth>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         // for continuous movement between points
         agent.autoBraking = false;
         chase = false;
@@ -51,21 +55,31 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        // if this enemy has seen the player, chase them
-        if (chase)
+        if (playerHealth.currentHealth > 0 && enemyHealth.currentHealth > 0)
         {
-            agent.SetDestination(player.position);
+            // if this enemy has seen the player, chase them
+            if (chase)
+            {
+                agent.SetDestination(player.position);
+            }
+            else if (GetComponent<FieldOfView>().canSeePlayer)
+            {
+                chase = true;
+                agent.speed = chaseSpeed;
+                anim.SetBool("IsRunning", chase);
+            }
+            // else choose next destination point when agent gets close to the current one
+            else if (!chase && !agent.pathPending && agent.remainingDistance < 0.5f)
+            {
+                GoToNextPoint();
+            }
         }
-        else if (GetComponent<FieldOfView>().canSeePlayer)
+        else
         {
-            chase = true;
-            agent.speed = chaseSpeed;
-            anim.SetBool("IsRunning", chase);
-        }
-        // else choose next destination point when agent gets close to the current one
-        else if (!chase && !agent.pathPending && agent.remainingDistance < 0.5f)
-        {
-            GoToNextPoint();
+            anim.SetBool("IsWalking", false);
+            anim.SetBool("IsRunning", false);
+            chase = false;
+            agent.enabled = false;
         }
     }
 }
