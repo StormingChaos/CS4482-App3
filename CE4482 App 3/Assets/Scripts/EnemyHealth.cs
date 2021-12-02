@@ -40,6 +40,7 @@ public class EnemyHealth : MonoBehaviour
             isDead = true;
             // call death animation
             anim.SetTrigger("IsDead");
+            GameStateManager.kills++;
         }
     }
 

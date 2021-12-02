@@ -10,14 +10,14 @@ public class PlayerHealth : MonoBehaviour
 
     Animator anim;                      // reference to animator
     PlayerMovement playerMovement;      // reference to player movement script
-    //PlayerAttack playerAttack;        // reference to player attacking script
+    PlayerAttack playerAttack;        // reference to player attacking script
 
     private void Awake()
     {
         // set up references
         anim = GetComponent<Animator>();
         playerMovement = GetComponent<PlayerMovement>();
-        //playerAttack = GetComponent<PlayerAttack>();
+        playerAttack = GetComponent<PlayerAttack>();
         // set initial player health
         currentHealth = startingHealth;
     }
@@ -41,6 +41,6 @@ public class PlayerHealth : MonoBehaviour
         anim.SetTrigger("PlayerDead");
         // disable movement and attacking
         playerMovement.enabled = false;
-        //playerAttack.enabled = false;
+        playerAttack.enabled = false;
     }
 }

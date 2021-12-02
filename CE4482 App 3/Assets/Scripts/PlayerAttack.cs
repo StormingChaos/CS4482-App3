@@ -9,21 +9,27 @@ public class PlayerAttack : MonoBehaviour
     public bool melee;              // is this weapon ranged or melee?
     public int maxAmmo = 1;         // maximum ammo of weapon
     public int ammoCount = 1;       // current ammo of weapon
+    public float range;             // the range of the weapon
 
     float timer = 0;                // timer for cooldown
-    Ray bulletTrajectory;           // ray from the gun forwards
-    RaycastHit bulletHit;           // raycast hit to get information about what was hit
-    LayerMask obstructionMask;      // Layer mask for things that can be shot
+    Ray hitRay;                     // ray from the weapon forwards
+    RaycastHit weaponHit;           // raycast hit to get information about what was hit
+    LayerMask obstructionMask;      // Layer mask for things that can be hit
     LineRenderer bulletLine;        // Reference to the line renderer
     AudioSource hitSound;           // reference to audio source
     Light bulletFlash;              // reference to light source
     float effectDisplayTime = 0.2f; // how long to show effects for
+    GameObject player;              // reference to player
+    Animator anim;                  // reference to player animator
 
     private void Awake()
     {
         // create layermask for obstruction layer
         obstructionMask = LayerMask.GetMask("Shootable");
         // set up references
+        player = GameObject.FindGameObjectWithTag("Player");
+        anim = player.GetComponent<Animator>();
+        anim.fireEvents = false;
         hitSound = GetComponent<AudioSource>();
         if (!melee)
         {
@@ -39,9 +45,9 @@ public class PlayerAttack : MonoBehaviour
         timer += Time.deltaTime;
 
         // if Fire1 is pressed, try to attack
-        if(Input.GetButton("Fire1") && timer >= attackDelay)
+        if(Input.GetButton("Fire1") && timer >= attackDelay && ammoCount > 0)
         {
-            // attack if cooldown is over and attack button was pressed
+            // attack if cooldown is over, attack button was pressed and weapon has ammo
             Attack();
         }
 
@@ -57,23 +63,54 @@ public class PlayerAttack : MonoBehaviour
     {
         // reset timer
         timer = 0f;
-        // play attack sudio
-        hitSound.Play();
+        // set the ray to start at the player and point forwards
+        hitRay.origin = player.transform.position;
+        hitRay.direction = player.transform.forward;
 
-        //if the weapon is melee
+        // play attack animation
         if (melee)
         {
-
+            anim.SetTrigger("AttackMelee");
         }
-        // if the weapon is not melee, check if it has ammo
-        else if (ammoCount > 0)
+        else
         {
+            // play attack audio
+            hitSound.Play();
             // enable light
             bulletFlash.enabled = true;
             // enable line renderer and set first position to gun barrel
             bulletLine.enabled = true;
-            bulletLine.SetPosition(0, transform.position);
+            bulletLine.SetPosition(0, player.transform.position);
+            anim.SetTrigger("AttackGun");
+            ammoCount--;
         }
-        // if weapon is not melee but has no ammo, can't attack
+
+        // perform raycast against gameobjects on the obstruction layer
+        if(Physics.Raycast(hitRay, out weaponHit, range, obstructionMask))
+        {
+            // find an enemyHealth script on the gameobject hit
+            EnemyHealth enemyHealth = weaponHit.collider.GetComponent<EnemyHealth>();
+            // if the enemyHealth component exists, they should take damage
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(damage);
+                if (melee)
+                {
+                    hitSound.Play();
+                }
+            }
+
+            // set second position of line renderer to the point the raycast hit
+            if (!melee)
+            {
+                bulletLine.SetPosition(1, weaponHit.point);
+            }
+        }
+        // if the raycast didn't hit anything
+        else if(!melee)
+        {
+            // set second position of line renderer to the max range of weapon
+            bulletLine.SetPosition(1, hitRay.origin + hitRay.direction * range);
+        }
     }
 }
