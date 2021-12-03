@@ -16,6 +16,20 @@ public class GameStateManager : MonoBehaviour
     public TextMeshProUGUI textEntry;           // reference to name entry component
     public static bool getInput = false;        // if input can be received or not
 
+    public static GameObject bat;               // reference to equipped bat
+    public static GameObject pistol;            // reference to equipped pistol
+    public static GameObject rifle;             // reference to equipped rifle
+
+    private void Start()
+    {
+        bat = GameObject.FindGameObjectWithTag("Bat");
+        pistol = GameObject.FindGameObjectWithTag("Pistol");
+        rifle = GameObject.FindGameObjectWithTag("Rifle");
+
+        pistol.SetActive(false);
+        rifle.SetActive(false);
+    }
+
     private void Update()
     {
         if (kills == maxKills)

@@ -1,31 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerAttack : MonoBehaviour
 {
-    public int damage;              // damage inflicted by this weapon
-    public float attackDelay;       // delay before another attack can be made
-    public bool melee;              // is this weapon ranged or melee?
-    public int maxAmmo = 1;         // maximum ammo of weapon
-    public int ammoCount = 1;       // current ammo of weapon
-    public float range;             // the range of the weapon
+    public int damage;                  // damage inflicted by this weapon
+    public float attackDelay;           // delay before another attack can be made
+    public bool melee;                  // is this weapon ranged or melee?
+    public int maxAmmo = 1;             // maximum ammo of weapon
+    public int ammoCount = 1;           // current ammo of weapon
+    public float range;                 // the range of the weapon
 
-    float timer = 0;                // timer for cooldown
-    Ray hitRay;                     // ray from the weapon forwards
-    RaycastHit weaponHit;           // raycast hit to get information about what was hit
-    LayerMask obstructionMask;      // Layer mask for things that can be hit
-    LineRenderer bulletLine;        // Reference to the line renderer
-    AudioSource hitSound;           // reference to audio source
-    Light bulletFlash;              // reference to light source
-    float effectDisplayTime = 0.2f; // how long to show effects for
-    GameObject player;              // reference to player
-    Animator anim;                  // reference to player animator
+    float timer = 0;                    // timer for cooldown
+    Ray hitRay;                         // ray from the weapon forwards
+    RaycastHit weaponHit;               // raycast hit to get information about what was hit
+    LineRenderer bulletLine;            // Reference to the line renderer
+    AudioSource hitSound;               // reference to audio source
+    Light bulletFlash;                  // reference to light source
+    float effectDisplayTime = 0.2f;     // how long to show effects for
+    GameObject player;                  // reference to player
+    Animator anim;                      // reference to player animator
+
+    public TextMeshProUGUI ammoText;    // reference to ammo text ui component
 
     private void Awake()
     {
-        // create layermask for obstruction layer
-        obstructionMask = LayerMask.GetMask("Shootable");
         // set up references
         player = GameObject.FindGameObjectWithTag("Player");
         anim = player.GetComponent<Animator>();
@@ -51,11 +51,17 @@ public class PlayerAttack : MonoBehaviour
             Attack();
         }
 
+        // update ammo UI
+        ammoText.text = "Ammo: " + ammoCount + "/" + maxAmmo;
+
         // if timer has exceeded effect display time, disable the effects
         if (!melee && timer >= attackDelay * effectDisplayTime)
         {
             bulletLine.enabled = false;
             bulletFlash.enabled = false;
+            // set color
+            bulletLine.startColor = Color.yellow;
+            bulletLine.endColor = Color.yellow;
         }
     }
 
@@ -63,9 +69,6 @@ public class PlayerAttack : MonoBehaviour
     {
         // reset timer
         timer = 0f;
-        // set the ray to start at the player and point forwards
-        hitRay.origin = player.transform.position;
-        hitRay.direction = player.transform.forward;
 
         // play attack animation
         if (melee)
@@ -84,9 +87,12 @@ public class PlayerAttack : MonoBehaviour
             anim.SetTrigger("AttackGun");
             ammoCount--;
         }
+        // set the ray to start at the player and point forwards
+        hitRay.origin = player.transform.position;
+        hitRay.direction = player.transform.forward;
 
         // perform raycast against gameobjects on the obstruction layer
-        if(Physics.Raycast(hitRay, out weaponHit, range, obstructionMask))
+        if (Physics.Raycast(hitRay, out weaponHit, range))
         {
             // find an enemyHealth script on the gameobject hit
             EnemyHealth enemyHealth = weaponHit.collider.GetComponent<EnemyHealth>();

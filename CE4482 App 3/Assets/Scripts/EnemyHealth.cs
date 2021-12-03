@@ -41,6 +41,9 @@ public class EnemyHealth : MonoBehaviour
             // call death animation
             anim.SetTrigger("IsDead");
             GameStateManager.kills++;
+
+            // drop item
+            DropItem();
         }
     }
 
@@ -50,11 +53,15 @@ public class EnemyHealth : MonoBehaviour
         //make sure enemy is actually dead and has a drop
         if (isDead && droppedItem != null)
         {
-            Vector3 spawnPoint = new Vector3(transform.position.x, 1, transform.position.y);
+            // set spawn point to where the enemy was
+            Vector3 spawnPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+            // set item rotation
+            Quaternion rotation = Quaternion.Euler(0f, 0f, 90f);
+
             //set up random chance
             if (Random.Range(0, 100) <= dropChance)
             {
-                Instantiate(droppedItem, spawnPoint, transform.rotation);
+                Instantiate(droppedItem, spawnPoint, rotation);
             }
         }
     }
