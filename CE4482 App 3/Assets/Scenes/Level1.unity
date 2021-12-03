@@ -4837,7 +4837,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 617384394}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1626804965}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: RestartGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &617384394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4988,7 +5000,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 670260617}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1626804965}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: QuitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &670260617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5074,11 +5098,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 2
-  attackDelay: 2
+  attackDelay: 1
   melee: 0
-  maxAmmo: 9
+  maxAmmo: 100
   ammoCount: 9
-  range: 10
+  range: 100
 --- !u!120 &679214295
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -6718,7 +6742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1425814443739648, guid: b8472c75b2bc2ee4b98e87869dace24f, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4918146466755900, guid: b8472c75b2bc2ee4b98e87869dace24f, type: 3}
       propertyPath: m_RootOrder
@@ -8287,11 +8311,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  attackDelay: 2
+  attackDelay: 0.5
   melee: 1
   maxAmmo: 1
   ammoCount: 1
-  range: 0
+  range: 10
 --- !u!1 &1403346511
 GameObject:
   m_ObjectHideFlags: 0
@@ -9464,6 +9488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13eaefafd8d643d41add2afe11e2f3a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxKills: 7
+  gameOverUI: {fileID: 876711942}
+  victoryUI: {fileID: 36069342}
+  textEntry: {fileID: 397784225}
 --- !u!4 &1636706523 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4918146466755900, guid: b8472c75b2bc2ee4b98e87869dace24f, type: 3}
@@ -9551,7 +9579,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1642545625}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1626804966}
+        m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
+        m_MethodName: SubmitScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1642545625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9806,7 +9846,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1745110424}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1626804965}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1745110424
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11392,7 +11444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1932547919242592, guid: 1bb69408c48b5b044ad09b740b5b60ad, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4388131110801768, guid: 1bb69408c48b5b044ad09b740b5b60ad, type: 3}
       propertyPath: m_RootOrder
@@ -11737,10 +11789,34 @@ MonoBehaviour:
       m_Calls: []
   m_OnSelect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1626804966}
+        m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
+        m_MethodName: EnableTextEntry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnDeselect:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1626804966}
+        m_TargetAssemblyTypeName: GameStateManager, Assembly-CSharp
+        m_MethodName: DisableTextEntry
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnTextSelection:
     m_PersistentCalls:
       m_Calls: []

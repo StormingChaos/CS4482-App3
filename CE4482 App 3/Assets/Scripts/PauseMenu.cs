@@ -45,6 +45,7 @@ public class PauseMenu : MonoBehaviour
     {
         Resume();
         GameStateManager.victory = false;
+        GameStateManager.gameOver = false;
         SceneManager.LoadScene("Level1");
     }
 
@@ -52,6 +53,7 @@ public class PauseMenu : MonoBehaviour
     {
         Resume();
         GameStateManager.victory = false;
+        GameStateManager.gameOver = false;
         SceneManager.LoadScene("Leaderboard");
     }
 
@@ -59,6 +61,7 @@ public class PauseMenu : MonoBehaviour
     {
         Resume();
         GameStateManager.victory = false;
+        GameStateManager.gameOver = false;
         SceneManager.LoadScene("MainMenu");
     }
 

@@ -55,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (playerHealth.currentHealth > 0 && enemyHealth.currentHealth > 0)
+        if (playerHealth.currentHealth > 0 && enemyHealth.currentHealth > 0 && !GameStateManager.victory)
         {
             // if this enemy has seen the player, chase them
             if (chase)

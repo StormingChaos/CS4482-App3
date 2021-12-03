@@ -20,7 +20,7 @@ public class Timer : MonoBehaviour
     void Update()
     {
         //if the player has not finished the maze
-        if (!GameStateManager.victory)
+        if (!GameStateManager.victory && !GameStateManager.gameOver)
         {
             //calculate time elapsed
             timer += Time.deltaTime;
