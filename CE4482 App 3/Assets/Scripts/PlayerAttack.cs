@@ -94,6 +94,7 @@ public class PlayerAttack : MonoBehaviour
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damage);
+                // play the melee hit sound since it hit an enemy
                 if (melee)
                 {
                     hitSound.Play();
