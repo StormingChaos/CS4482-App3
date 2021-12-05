@@ -12713,6 +12713,10 @@ PrefabInstance:
       value: Bat Equipped
       objectReference: {fileID: 0}
     - target: {fileID: 5880647123741179161, guid: 90c1a43bfd359ca4596aa4f1c87afd1b, type: 3}
+      propertyPath: range
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5880647123741179161, guid: 90c1a43bfd359ca4596aa4f1c87afd1b, type: 3}
       propertyPath: ammoText
       value: 
       objectReference: {fileID: 436314079}

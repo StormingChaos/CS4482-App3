@@ -22,12 +22,19 @@ public class GameStateManager : MonoBehaviour
 
     private void Start()
     {
+        // set up references to equipped weapons
         bat = GameObject.FindGameObjectWithTag("Bat");
         pistol = GameObject.FindGameObjectWithTag("Pistol");
         rifle = GameObject.FindGameObjectWithTag("Rifle");
 
+        // disable the pistol and rifle since the player starts with the bat
         pistol.SetActive(false);
         rifle.SetActive(false);
+
+        // reset kills and victory state when level starts
+        kills = 0;
+        victory = false;
+        gameOver = false;
     }
 
     private void Update()
