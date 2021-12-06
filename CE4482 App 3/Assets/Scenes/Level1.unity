@@ -6341,8 +6341,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 2
   currentHealth: 0
-  droppedItem: {fileID: 3571832703522592178, guid: 8f28606ea73ffd7409663fb9a5b830b1, type: 3}
-  dropChance: 50
+  droppedItem: {fileID: 8704549639736405548, guid: eb3d77caab7da9d49b73330536ab590d, type: 3}
+  dropChance: 90
   damaged: 0
 --- !u!114 &812261443
 MonoBehaviour:
@@ -11062,7 +11062,7 @@ MonoBehaviour:
   maxHealth: 1
   currentHealth: 0
   droppedItem: {fileID: 8704549639736405548, guid: eb3d77caab7da9d49b73330536ab590d, type: 3}
-  dropChance: 50
+  dropChance: 90
   damaged: 0
 --- !u!4 &1836983589 stripped
 Transform:
