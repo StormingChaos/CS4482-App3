@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     private int destPoint = 0;          // currently selected destination point
     private NavMeshAgent agent;         // reference to Nav mesh agent
     private Transform player;           // reference to player position
-    private bool chase;                 // if this enemy is chasing the player or not
+    public bool chase;                  // if this enemy is chasing the player or not
     private Animator anim;              // reference to animator
     private EnemyHealth enemyHealth;    // reference to enemyHealth Script
     private PlayerHealth playerHealth;  // reference to player health script
@@ -55,14 +55,15 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (playerHealth.currentHealth > 0 && enemyHealth.currentHealth > 0 && !GameStateManager.victory)
+        if (playerHealth.currentHealth > 0 && enemyHealth.currentHealth > 0 && !GameStateManager.victory && !GameStateManager.gameOver)
         {
-            // if this enemy has seen the player, chase them
+            // if this enemy is chasing the player, keep chasing them
             if (chase)
             {
                 agent.SetDestination(player.position);
             }
-            else if (GetComponent<FieldOfView>().canSeePlayer)
+            // if the enemy has seen the player or was damaged, chase the player
+            else if (GetComponent<FieldOfView>().canSeePlayer || enemyHealth.damaged)
             {
                 chase = true;
                 agent.speed = chaseSpeed;
@@ -76,6 +77,7 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
+            // if this enemy is dead or the game is over, stop chasing
             anim.SetBool("IsWalking", false);
             anim.SetBool("IsRunning", false);
             chase = false;

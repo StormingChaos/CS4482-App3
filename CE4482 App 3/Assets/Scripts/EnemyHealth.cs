@@ -14,6 +14,8 @@ public class EnemyHealth : MonoBehaviour
     Animator anim;                    // reference to animator component
     CapsuleCollider capsuleCollider;  // Reference to the capsule collider.
 
+    public bool damaged;             // if the enemy has taken damage
+
 
     // Start is called before the first frame update
     void Awake()
@@ -22,6 +24,7 @@ public class EnemyHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         currentHealth = maxHealth;      // set the current health to max health once the game starts
+        damaged = false;                // enemy starts having not taken damage
     }
 
     public void TakeDamage(int amount)
@@ -32,6 +35,8 @@ public class EnemyHealth : MonoBehaviour
 
         // subtract the damage from the enemy's current health
         currentHealth -= amount;
+        // set damaged flag to true
+        damaged = true;
 
         // if health is less than 0...
         if (currentHealth <= 0)

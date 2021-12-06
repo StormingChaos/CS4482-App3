@@ -892,6 +892,7 @@ MonoBehaviour:
   currentHealth: 0
   droppedItem: {fileID: 4918013251008935042, guid: 2d209025ed214da4f89b960eb7fbe905, type: 3}
   dropChance: 50
+  damaged: 0
 --- !u!114 &190322681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,8 +1329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7b01865f250345ba46a24bbd78982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  angle: 100
+  radius: 5
+  angle: 90
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -1358,6 +1359,7 @@ MonoBehaviour:
   walkSpeed: 0.5
   chaseSpeed: 2.5
   turnSpeed: 1000
+  chase: 0
 --- !u!195 &190419157
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5201,8 +5203,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7b01865f250345ba46a24bbd78982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  angle: 100
+  radius: 5
+  angle: 90
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -5965,8 +5967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7b01865f250345ba46a24bbd78982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  angle: 100
+  radius: 5
+  angle: 90
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -5995,6 +5997,7 @@ MonoBehaviour:
   walkSpeed: 0.5
   chaseSpeed: 2.5
   turnSpeed: 1000
+  chase: 0
 --- !u!195 &768374778
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -6062,6 +6065,7 @@ MonoBehaviour:
   currentHealth: 0
   droppedItem: {fileID: 4918013251008935042, guid: 2d209025ed214da4f89b960eb7fbe905, type: 3}
   dropChance: 50
+  damaged: 0
 --- !u!114 &768374783
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6240,8 +6244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7b01865f250345ba46a24bbd78982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  angle: 100
+  radius: 5
+  angle: 90
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -6293,6 +6297,7 @@ MonoBehaviour:
   walkSpeed: 1.5
   chaseSpeed: 2.5
   turnSpeed: 1000
+  chase: 0
 --- !u!54 &812261440
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6338,6 +6343,7 @@ MonoBehaviour:
   currentHealth: 0
   droppedItem: {fileID: 3571832703522592178, guid: 8f28606ea73ffd7409663fb9a5b830b1, type: 3}
   dropChance: 50
+  damaged: 0
 --- !u!114 &812261443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7844,8 +7850,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7b01865f250345ba46a24bbd78982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  angle: 100
+  radius: 5
+  angle: 90
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -7892,6 +7898,7 @@ MonoBehaviour:
   walkSpeed: 1.5
   chaseSpeed: 2.5
   turnSpeed: 1000
+  chase: 0
 --- !u!54 &1271821345
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7937,6 +7944,7 @@ MonoBehaviour:
   currentHealth: 0
   droppedItem: {fileID: 8704549639736405548, guid: eb3d77caab7da9d49b73330536ab590d, type: 3}
   dropChance: 50
+  damaged: 0
 --- !u!114 &1271821348
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10470,8 +10478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7b01865f250345ba46a24bbd78982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  angle: 100
+  radius: 5
+  angle: 90
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -10518,6 +10526,7 @@ MonoBehaviour:
   walkSpeed: 1.5
   chaseSpeed: 2.5
   turnSpeed: 1000
+  chase: 0
 --- !u!54 &1828049058
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -10563,6 +10572,7 @@ MonoBehaviour:
   currentHealth: 0
   droppedItem: {fileID: 3571832703522592178, guid: 8f28606ea73ffd7409663fb9a5b830b1, type: 3}
   dropChance: 50
+  damaged: 0
 --- !u!114 &1828049061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10994,6 +11004,7 @@ MonoBehaviour:
   walkSpeed: 1.5
   chaseSpeed: 2.5
   turnSpeed: 1000
+  chase: 0
 --- !u!54 &1836693768
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11052,6 +11063,7 @@ MonoBehaviour:
   currentHealth: 0
   droppedItem: {fileID: 8704549639736405548, guid: eb3d77caab7da9d49b73330536ab590d, type: 3}
   dropChance: 50
+  damaged: 0
 --- !u!4 &1836983589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400154, guid: bdd7a03fd93bf2d4cb6babd63ceabee8, type: 3}
@@ -11868,8 +11880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b7b01865f250345ba46a24bbd78982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 3
-  angle: 100
+  radius: 5
+  angle: 90
   playerRef: {fileID: 0}
   targetMask:
     serializedVersion: 2
@@ -11916,6 +11928,7 @@ MonoBehaviour:
   walkSpeed: 1.5
   chaseSpeed: 2.5
   turnSpeed: 1000
+  chase: 0
 --- !u!54 &1910089356
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -11961,6 +11974,7 @@ MonoBehaviour:
   currentHealth: 0
   droppedItem: {fileID: 8704549639736405548, guid: eb3d77caab7da9d49b73330536ab590d, type: 3}
   dropChance: 50
+  damaged: 0
 --- !u!114 &1910089359
 MonoBehaviour:
   m_ObjectHideFlags: 0
