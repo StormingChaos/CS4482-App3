@@ -48,7 +48,10 @@ public class PlayerAttack : MonoBehaviour
         if(Input.GetButton("Fire1") && timer >= attackDelay && ammoCount > 0)
         {
             // attack if cooldown is over, attack button was pressed and weapon has ammo
-            Attack();
+            if (!GameStateManager.getInput)
+            {
+                Attack();
+            }
         }
 
         // update ammo UI
